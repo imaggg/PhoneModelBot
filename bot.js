@@ -17,7 +17,8 @@ module.exports = function(bot, User){
   });
 
   bot.onText(/\/start/, function (msg, match) {
-    var fromId = msg.chat.id || msg.from.id;
+    var fromId = msg.from.id;
+    var chatId = msg.chat.id || msg.from.id;
     var fromName = msg.from.username;
 
     User.findOne({telegramId: fromId}, function (err, user) {
@@ -36,14 +37,15 @@ module.exports = function(bot, User){
 
       } else {
         console.log('finded')
-        bot.sendMessage(fromId, 'Hi, '+ msg.from.first_name +'!\n\
+        bot.sendMessage(chatId, 'Hi, '+ msg.from.first_name +'!\n\
         Your model: '+ user.model  +'.');
       };
     });
   });
 
   bot.onText(/\/group/, function (msg, match) {
-    var fromId = msg.chat.id || msg.from.id;
+    var fromId = msg.from.id;
+    var chatId = msg.chat.id || msg.from.id;
 
     User.findOne({telegramId: fromId}, function (err, user) {
       if(user) if (user.model == 'unknown') {
@@ -55,7 +57,7 @@ module.exports = function(bot, User){
         }).exec(function (err, users) {
 
           if (!users.length) {
-            bot.sendMessage(fromId, 'Cant find users with your model');
+            bot.sendMessage(chatId, 'Cant find users with your model');
           } else {
 
             var list = 'Users with '+ user.model +':\n';
@@ -63,7 +65,7 @@ module.exports = function(bot, User){
               if(users[i]) list += '@'+ users[i].username + '\n';
             };
 
-            bot.sendMessage(fromId, list);
+            bot.sendMessage(chatId, list);
           };  
         });
       };
@@ -71,7 +73,8 @@ module.exports = function(bot, User){
   });
 
   bot.onText(/\/list/, function (msg, match) {
-    var fromId = msg.chat.id || msg.from.id;
+    var fromId = msg.from.id;
+    var chatId = msg.chat.id || msg.from.id;
 
     User.find({}, function (err, users) {
       console.log('find')
@@ -80,24 +83,23 @@ module.exports = function(bot, User){
         if(users[i]) list += '@'+ users[i].username + ': '+ users[i].model +'\n';
       }
 
-      bot.sendMessage(fromId, list);
+      bot.sendMessage(chatId, list);
     });
-
-    
   });
 
 
   bot.onText(/\/me/, function (msg, match) {
-    var fromId = msg.chat.id || msg.from.id;
+    var fromId = msg.from.id;
+    var chatId = msg.chat.id || msg.from.id;
     
     User.findOne({telegramId: fromId}, function (err, user) {
-      bot.sendMessage(fromId, 'Your model is ' + user.model);
+      bot.sendMessage(chatId, 'Your model is ' + user.model);
     });
   });
 
   bot.onText(/\/help/, function (msg, match) {
     var fromId = msg.chat.id || msg.from.id;
-    bot.sendMessage(fromId, 'Comands:\n /add\n /list\n /group\n /me');
+    bot.sendMessage(chatId, 'Comands:\n /add\n /list\n /group\n /me');
   });
 
   bot.onText(/\/litvinov/, function (msg, match) {

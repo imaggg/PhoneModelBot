@@ -23,5 +23,4 @@ db.once('open', function() {
 	function handle(req, res) {
 	  res.end('<a href="https://telegram.me/PhoneModelBot">Get it!</a>');
 	}
-
 });
