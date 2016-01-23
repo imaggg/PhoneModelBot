@@ -46,7 +46,7 @@ module.exports = function(bot, User){
     var fromId = msg.chat.id || msg.from.id;
 
     User.findOne({telegramId: fromId}, function (err, user) {
-      if (user.model == 'unknown') {
+      if(user) if (user.model == 'unknown') {
         bot.sendMessage(fromId, 'Say /add for set model.');
       } else {
 
