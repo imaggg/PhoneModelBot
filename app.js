@@ -6,7 +6,7 @@ var token = '120198089:AAEyymQlxt_6luLxQojA0UcEl7Roq6bgm9k';
 var bot = new TelegramBot(token, {polling: true});
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://dima:1997dimalolik1997@ds047955.mongolab.com:47955/heroku_x95w42p7');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
