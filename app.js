@@ -21,7 +21,7 @@ db.once('open', function() {
 	});
 
 	function handle(req, res) {
-	  response.end('<a href="https://telegram.me/PhoneModelBot">Get it!</a>');
+	  res.end('<a href="https://telegram.me/PhoneModelBot">Get it!</a>');
 	}
 
 });

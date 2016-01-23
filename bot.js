@@ -42,7 +42,7 @@ module.exports = function(bot, User){
     });
   });
 
-  bot.onText(/\/list/, function (msg, match) {
+  bot.onText(/\/group/, function (msg, match) {
     var fromId = msg.chat.id || msg.from.id;
 
     User.findOne({telegramId: fromId}, function (err, user) {
@@ -52,7 +52,7 @@ module.exports = function(bot, User){
 
         User.find({model: user.model}).limit(20).and({ 
           telegramId: { $ne: fromId }
-        }).exec({model: user.model}, function (err, users) {
+        }).exec(function (err, users) {
 
           if (!users.length) {
             bot.sendMessage(fromId, 'Cant find users with your model');
@@ -70,6 +70,23 @@ module.exports = function(bot, User){
     });
   });
 
+  bot.onText(/\/list/, function (msg, match) {
+    var fromId = msg.chat.id || msg.from.id;
+
+    User.find({}, function (err, users) {
+      console.log('find')
+      var list = 'user: model\n';
+      for (var i = users.length; i >= 0; i--) {
+        if(users[i]) list += '@'+ users[i].username + ': '+ users[i].model +'\n';
+      }
+
+      bot.sendMessage(fromId, list);
+    });
+
+    
+  });
+
+
   bot.onText(/\/me/, function (msg, match) {
     var fromId = msg.chat.id || msg.from.id;
     
@@ -80,7 +97,7 @@ module.exports = function(bot, User){
 
   bot.onText(/\/help/, function (msg, match) {
     var fromId = msg.chat.id || msg.from.id;
-    bot.sendMessage(fromId, 'Comands:\n /add\n /list\n /me');
+    bot.sendMessage(fromId, 'Comands:\n /add\n /list\n /group\n /me');
   });
 
   bot.onText(/\/litvinov/, function (msg, match) {
