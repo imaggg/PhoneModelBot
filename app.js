@@ -20,7 +20,11 @@ db.once('open', function() {
 	  console.log('ok');
 	});
 
-	function handle(request, response){
+	function handle(req, res) {
+		// heroku favicon problem
+		if (req.method == 'GET') {
+			res.send(200);
+	  }
 	  response.end('<a href="https://telegram.me/PhoneModelBot">Get it!</a>');
 	}
 
