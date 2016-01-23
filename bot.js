@@ -10,7 +10,7 @@ module.exports = function(bot, User){
         if (err) throw err;
         (old == 'unknown') ? 
           bot.sendMessage(fromId, 'Ok. Now your can use /list') :
-          bot.sendMessage(fromId, 'Model changed from '+ old +' to ' + match[1])
+          bot.sendMessage(fromId, 'Model changed from '+ old +' to ' + match[1]);
       });
 
     });
