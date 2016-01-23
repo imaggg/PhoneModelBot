@@ -3,16 +3,17 @@ module.exports = function(bot, User){
     var fromId = msg.chat.id || msg.from.id;
 
     User.findOne({telegramId: fromId}, function (err, user) {
-      var old = user.model;
-      user.model = match[1].toUpperCase();
+      if(user) {
+        var old = user.model;
+        user.model = match[1].toUpperCase();
 
-      user.save(function (err) {
-        if (err) throw err;
-        (old == 'unknown') ? 
-          bot.sendMessage(fromId, 'Ok. Now your can use /list') :
-          bot.sendMessage(fromId, 'Model changed from '+ old +' to ' + match[1]);
-      });
-
+        user.save(function (err) {
+          if (err) throw err;
+          (old == 'unknown') ? 
+            bot.sendMessage(fromId, 'Ok. Now your can use /list') :
+            bot.sendMessage(fromId, 'Model changed from '+ old +' to ' + match[1]);
+        });
+      }
     });
   });
 
