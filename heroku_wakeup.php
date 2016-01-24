@@ -2,8 +2,8 @@
 // Heroku server disconnects after an hour of downtime
 // Wake up it with cron
 
-$url  = 'http://phonemodelbot.herokuapp.com';
-$agent= 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
+$url   = 'http://phonemodelbot.herokuapp.com';
+$agent = 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12';
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
