@@ -3,11 +3,11 @@ var TelegramBot = require('node-telegram-bot-api'),
 	http = require('http'),
 	mongoose = require('mongoose'),
 		
-	token = '120198089:AAEyymQlxt_6luLxQojA0UcEl7Roq6bgm9k',
+	token = '###',
 	bot = new TelegramBot(token, {polling: true}),
 	db = mongoose.connection;
 
-mongoose.connect('mongodb://dima:1997dimalolik1997@ds047955.mongolab.com:47955/heroku_x95w42p7');
+mongoose.connect('###');
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
