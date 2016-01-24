@@ -1,11 +1,11 @@
 var TelegramBot = require('node-telegram-bot-api'),
-		User = require('./models/user'),
-		http = require('http'),
-		mongoose = require('mongoose');
+	User = require('./models/user'),
+	http = require('http'),
+	mongoose = require('mongoose'),
 		
-		token = '120198089:AAEyymQlxt_6luLxQojA0UcEl7Roq6bgm9k',
-		bot = new TelegramBot(token, {polling: true}),
-		db = mongoose.connection;
+	token = '120198089:AAEyymQlxt_6luLxQojA0UcEl7Roq6bgm9k',
+	bot = new TelegramBot(token, {polling: true}),
+	db = mongoose.connection;
 
 mongoose.connect('mongodb://dima:1997dimalolik1997@ds047955.mongolab.com:47955/heroku_x95w42p7');
 
@@ -23,5 +23,5 @@ db.once('open', function() {
 	function handle(req, res) {
 	  res.end('<a href="https://telegram.me/PhoneModelBot">Get it!</a>');
 	}
-	
+
 });
