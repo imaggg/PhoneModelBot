@@ -2,11 +2,11 @@ var TelegramBot = require('node-telegram-bot-api');
 var User = require('./models/user');
 var http = require('http');
 
-var token = '###';
+var token = '#';
 var bot = new TelegramBot(token, {polling: true});
 
 var mongoose = require('mongoose');
-mongoose.connect('###');
+mongoose.connect('#');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

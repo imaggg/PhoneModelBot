@@ -79,7 +79,6 @@ module.exports = function(bot, User){
     var chatId = msg.chat.id || msg.from.id;
 
     User.find({}, function (err, users) {
-      console.log('find')
       var list = 'user: model\n';
       for (var i = users.length; i >= 0; i--) {
         if(users[i]) list += '@'+ users[i].username + ': '+ users[i].model +'\n';
