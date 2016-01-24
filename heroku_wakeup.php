@@ -1,6 +1,7 @@
 <?php
 // Heroku server disconnects after an hour of downtime
 // Wake up it with cron
+// /30 * * * *
 
 $url   = 'http://phonemodelbot.herokuapp.com';
 $agent = 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12';

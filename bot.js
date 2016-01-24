@@ -1,7 +1,7 @@
 module.exports = function(bot, User){
   bot.onText(/\/add (.+)/, function (msg, match) {
-    var fromId = msg.from.id;
-    var chatId = msg.chat.id || msg.from.id;
+    var fromId = msg.from.id,
+        chatId = msg.chat.id || msg.from.id;
 
     User.findOne({telegramId: fromId}, function (err, user) {
       if(user) {
@@ -19,9 +19,9 @@ module.exports = function(bot, User){
   });
 
   bot.onText(/\/start/, function (msg, match) {
-    var fromId = msg.from.id;
-    var chatId = msg.chat.id || msg.from.id;
-    var fromName = msg.from.username;
+    var fromId = msg.from.id,
+        chatId = msg.chat.id || msg.from.id,
+        fromName = msg.from.username;
 
     User.findOne({telegramId: fromId}, function (err, user) {
       if (!user) {
@@ -75,8 +75,8 @@ module.exports = function(bot, User){
   });
 
   bot.onText(/\/list/, function (msg, match) {
-    var fromId = msg.from.id;
-    var chatId = msg.chat.id || msg.from.id;
+    var fromId = msg.from.id,
+        chatId = msg.chat.id || msg.from.id;
 
     User.find({}, function (err, users) {
       var list = 'user: model\n';
@@ -90,8 +90,8 @@ module.exports = function(bot, User){
 
 
   bot.onText(/\/me/, function (msg, match) {
-    var fromId = msg.from.id;
-    var chatId = msg.chat.id || msg.from.id;
+    var fromId = msg.from.id,
+        chatId = msg.chat.id || msg.from.id;
     
     User.findOne({telegramId: fromId}, function (err, user) {
       bot.sendMessage(chatId, 'Your model is ' + user.model);
