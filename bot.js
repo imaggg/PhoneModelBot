@@ -104,8 +104,8 @@ module.exports = function(bot, User){
     bot.sendMessage(chatId, 'Comands:\n /add\n /list\n /group\n /me');
   });
 
-  bot.onText(/\/litvinov/, function (msg, match) {
+  bot.onText(/\/pidor/, function (msg, match) {
     var fromId = msg.chat.id || msg.from.id;
-    bot.sendMessage(fromId, 'pidor');
+    bot.sendMessage(fromId, 'you');
   });
 };
