@@ -81,7 +81,8 @@ module.exports = function(bot, User){
     User.find({}, function (err, users) {
       var list = 'user: model\n';
       for (var i = users.length; i >= 0; i--) {
-        if(users[i]) list += '@'+ users[i].username + ': '+ users[i].model +'\n';
+        if(users[i]) 
+          list += '@'+ users[i].username + ': '+ users[i].model +'\n';
       }
 
       bot.sendMessage(chatId, list);
